@@ -178,8 +178,8 @@ This is why both voices matter - one for learning, one for mastery.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/pronunciation-helper.git
-cd pronunciation-helper
+git clone https://github.com/kenjd/student-name-pronunciation-helper.git
+cd student-name-pronunciation-helper
 ```
 
 ### Step 2: Install R Packages
