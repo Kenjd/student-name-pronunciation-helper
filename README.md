@@ -8,9 +8,21 @@ This application provides teachers with accurate phonetic guides and audio pronu
 
 ### Key Features
 
-**1. Dual Voice Pronunciation System**
-- **Standard Voice**: Uses your browser's built-in text-to-speech (free, instant, works offline)
-- **ElevenLabs Premium**: Uses AI with IPA (International Phonetic Alphabet) for highly accurate pronunciation of complex international names
+**1. Dual Voice Pronunciation System - Two Voices, Two Realities**
+
+**Standard Voice** (Browser TTS):
+- Shows how you'd *naturally* pronounce it using English phonetic rules
+- Free, instant, works offline
+- Often close, sometimes right, but usually *slightly wrong*
+- **The "student cringe" moment** - what you'd say without help
+
+**ElevenLabs Premium** (AI with IPA):
+- Shows how it's *actually* pronounced by native speakers
+- Uses International Phonetic Alphabet for linguistic accuracy
+- Captures sounds that don't exist in English (like ɔ in Nigerian "Olufunke")
+- **The "student recognition" moment** - what you should say
+
+**Use both to hear the difference and learn the correct pronunciation.**
 
 **2. Comprehensive Name Dictionaries**
 - **Irish (Gaelic)**: 62 common names (Siobhan, Saoirse, Cillian, Aoife, etc.)
@@ -85,6 +97,29 @@ Pronouncing someone's name correctly is a fundamental sign of respect. For stude
 - Shows cultural awareness and respect
 - Builds trust and rapport from day one
 - Creates an inclusive classroom environment
+
+## Real-World Examples: The Two Voices in Action
+
+**Example 1: Chioma (Nigerian Igbo)**
+- **Standard Voice**: "chee-OH-mah" → *Student cringes* 😬
+- **Premium Voice**: "chyoh-ma" → *Student's eyes light up with recognition* 😊
+
+**Example 2: Olufunke (Nigerian Yoruba)**
+- **Standard Voice**: "oh-loo-foon-kay" → *Close, but not quite right*
+- **Premium Voice**: "ɔlufunke" → *Perfect! That ɔ sound is authentic Yoruba*
+
+**Example 3: Siobhan (Irish Gaelic)**
+- **Standard Voice**: "see-oh-ban" → *Completely wrong*
+- **Premium Voice**: "shiv-awn" → *Exactly right!*
+
+**The Gap = Your Learning**
+
+Comparing both voices shows you:
+1. What you'd say naturally (often wrong)
+2. What you should say (always right)
+3. How to bridge the gap
+
+This is why both voices matter - one for learning, one for mastery.
 
 ## Cost Information
 
