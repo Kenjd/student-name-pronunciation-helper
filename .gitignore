@@ -1,0 +1,76 @@
+# ====================
+# SENSITIVE DATA - DO NOT COMMIT
+# ====================
+.elevenlabs_config.rds
+*.rds
+*.env
+
+# ====================
+# INTERNAL DOCUMENTATION - DO NOT COMMIT
+# ====================
+project-status.md
+
+# ====================
+# R TEMPORARY FILES
+# ====================
+.Rhistory
+.RData
+.Rproj.user
+.Rapp.history
+*.Rproj
+
+# Session Data files
+.RData
+.Ruserdata
+
+# ====================
+# PYTHON
+# ====================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# ====================
+# AUDIO CACHE
+# ====================
+/tmp/name_audio_cache/
+*.mp3
+*.wav
+
+# ====================
+# OS FILES
+# ====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# ====================
+# IDE
+# ====================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ====================
+# LOGS
+# ====================
+*.log
+logs/
+
+# ====================
+# TEST FILES (optional)
+# ====================
+test_names.csv
+scratch.R
