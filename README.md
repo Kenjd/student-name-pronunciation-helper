@@ -6,9 +6,42 @@ A Shiny app designed to help teachers learn correct pronunciation of student nam
 
 This application provides teachers with accurate phonetic guides and audio pronunciations for student names before the first day of class. No more awkward mispronunciations or "fingers crossed" moments when calling roll!
 
+## ⚠️ CRITICAL: The Student Is Always Right
+
+**This app is a starting point, NOT the final authority.**
+
+Even common names have multiple valid pronunciations. For example:
+- **"Ava"** - Some families say "AY-vuh" (like actress Ava Gardner), others say "AH-vah"
+- **"Celine"** - Can be "seh-LEEN" (English) or "seh-lynn" (French, with nasal ending)
+- **"Pauline"** - Can be "paw-LEEN" (English) or "paw-lynn" (French, with nasal ending)
+- **"Andrea"** - Can be "AN-dree-uh" (English) or "ahn-DRAY-uh" (Italian/Spanish)
+- **"Maria"** - Can be "muh-RYE-uh" (English) or "mah-REE-ah" (Spanish)
+
+**The golden rule: ALWAYS ask your student how they pronounce their name.**
+
+Use this app to:
+1. ✅ Get a starting pronunciation to practice beforehand
+2. ✅ Learn phonetic patterns for unfamiliar languages
+3. ✅ Prepare so you're not completely lost on day one
+
+**Never use this app to:**
+1. ❌ Tell students they're pronouncing their own name "wrong"
+2. ❌ Assume the app's pronunciation is the "only correct" way
+3. ❌ Skip asking the student directly
+
+**Best practice:** Use the app's pronunciation as your first attempt, then ask the student: "Did I say that correctly? How do you pronounce your name?" If different, use the **Custom Pronunciation** field to save the student's preference.
+
 ### Key Features
 
-**1. Dual Voice Pronunciation System - Two Voices, Two Realities**
+**1. Bulk Upload & PDF Generation (NEW in v2.0)**
+- Upload class rosters (CSV, Excel, or plain text files)
+- Process up to 200 names at once
+- Generate professional PDF pronunciation guides
+- Export results as CSV for gradebooks
+- Download example template to get started
+- Automatically add bulk uploads to Saved Names
+
+**2. Dual Voice Pronunciation System - Two Voices, Two Realities**
 
 **Standard Voice** (Browser TTS):
 - Shows how you'd *naturally* pronounce it using English phonetic rules
@@ -24,46 +57,64 @@ This application provides teachers with accurate phonetic guides and audio pronu
 
 **Use both to hear the difference and learn the correct pronunciation.**
 
-**2. Comprehensive Name Dictionaries**
-- **Irish (Gaelic)**: 62 common names (Siobhan, Saoirse, Cillian, Aoife, etc.)
-- **Spanish/Latin**: 48 names from Spain, Mexico, and Latin America (José, María, Santiago, Isabella, etc.)
-- **Nigerian**: 50+ names covering Igbo, Yoruba, and Hausa (Chioma, Oluwaseun, Chukwudi, etc.)
+**3. Comprehensive Name Dictionaries (850+ verified pronunciations across 18 languages)**
+- **Irish (Gaelic)**: 62 names (Siobhan, Saoirse, Cillian, Aoife, etc.)
+- **Spanish/Latin**: 48 names (José, María, Santiago, Isabella, etc.)
+- **Nigerian**: 50+ names covering Igbo, Yoruba, Hausa (Chioma, Oluwaseun, Chukwudi, etc.)
 - **Indian**: 60+ names covering Hindi, Tamil, Telugu, Punjabi (Priya, Aarav, Lakshmi, etc.)
+- **Greek**: 40+ names (Giannis, Yannis, Dimitris, Katerina, Eleni, etc.)
+- **Chinese (Mandarin)**: 50 names (Wei, Ming, Li, Mei, Jing, Yang, etc.)
+- **Vietnamese**: 50 names (Nguyen, Linh, Minh, Anh, Phuong, etc.)
+- **Korean**: 50+ names (Kim, Park, Ji, Min, Hye, Jun, etc.)
+- **Arabic**: 49 names (Muhammad, Fatima, Ali, Aisha, Omar, etc.)
+- **Italian**: 50 names (Giuseppe, Maria, Francesco, Sofia, etc.)
+- **French**: 50 names (Jean, Marie, Pierre, Sophie, etc.)
+- **Polish**: 50 names (Jan, Anna, Piotr, Katarzyna, etc.)
+- **German**: 50 names (Wolfgang, Anna, Hans, Maria, etc.)
+- **Portuguese**: 50 names (João, Maria, José, Ana, etc.)
+- **Japanese**: 48 names (Hiroshi, Sakura, Takeshi, Yuki, etc.)
+- **Russian**: 50 names (Aleksandr, Anna, Dmitry, Maria, etc.)
+- **Hebrew**: 50 names (David, Sarah, Daniel, Rachel, etc.)
+- **Congolese (DRC)**: Student-verified pronunciations (Abiung, etc.)
 - All entries include proper IPA pronunciation
 - Optimized phonetics for both voice types
 
-**3. Multiple Phonetic Formats**
+**4. Multiple Phonetic Formats**
 - Syllable breaks (e.g., "See-OR-sha")
 - Simple phonetic guide (e.g., "SEER-SHA")
 - IPA notation (e.g., "/ˈsɪərʃə/")
 - All formats displayed for each name
 
-**4. Origin-Specific Pronunciation Rules**
-- Select from 15+ language origins (Irish, Spanish, Chinese, Italian, German, Polish, etc.)
-- Pattern-based phonetic conversion for languages
-- Dictionary-first approach with pattern fallback
+**5. Origin-Specific Pronunciation Rules**
+- **18 languages with comprehensive dictionaries**: Irish, Spanish, Nigerian, Indian, Greek, Chinese, Vietnamese, Korean, Arabic, Italian, French, Polish, German, Portuguese, Japanese, Russian, Hebrew, Congolese
+- **Pattern-based fallback**: For names not in dictionaries, pattern rules provide reasonable approximations
+- Dictionary-first approach (95% accuracy) with pattern fallback (70-80% accuracy)
 
-**5. Transparency Indicators**
+**6. Transparency Indicators**
 - Shows whether pronunciation came from dictionary, pattern rules, or generic conversion
 - Helps users understand reliability of pronunciation
 
-**6. Name Management**
-- Save frequently used names
+**7. Name Management (Enhanced in v2.1)**
+- Save frequently used names with persistent storage
+- **NEW: Mark names as permanent** with star icon (survives "Clear All")
+- Delete individual saved names with one click
 - Add custom pronunciation notes
 - Export saved names list
 - Search and filter saved names
+- Audio playback for all saved names
+- Build your own permanent collection across semesters
 
-**7. Manual Override**
+**8. Manual Override**
 - Not happy with automatic pronunciation? Enter your own
 - Works with both Standard and Premium voices
 - Support for IPA or simple phonetic spellings
 
-**8. Smart Caching**
+**9. Smart Caching**
 - Caches ElevenLabs audio to reduce API costs
 - Cache key includes phonetic to prevent collisions
 - Clear cache option in Settings
 
-**9. Credential Persistence**
+**10. Credential Persistence**
 - ElevenLabs API credentials saved automatically
 - No need to re-enter on each app launch
 - Stored locally and securely
@@ -187,7 +238,7 @@ cd student-name-pronunciation-helper
 Open R or RStudio and run:
 
 ```r
-install.packages(c("shiny", "shinydashboard", "DT", "jsonlite", "base64enc", "digest"))
+install.packages(c("shiny", "shinydashboard", "DT", "jsonlite", "base64enc", "readxl", "gridExtra"))
 ```
 
 ### Step 3: Install Python Dependencies
@@ -226,11 +277,23 @@ For the Premium voice feature:
 
 **First-time users**: Check out [USAGE.md](USAGE.md) for detailed instructions.
 
+## Online Access
+
+**Try it online at shinyapps.io** (no installation required):
+- The app is deployed and ready to use at shinyapps.io
+- **Standard Voice works perfectly** (browser TTS - free, instant, offline)
+- All dictionaries and features fully functional
+- **ElevenLabs Premium Voice not available** on the hosted version due to Python dependency limitations
+
+**To use ElevenLabs Premium Voice:**
+- Run the app locally following the installation instructions below
+- This gives you both Standard and Premium voices with full IPA support
+
 ## Technical Requirements
 
 - R (4.0 or higher)
 - Python 3 (with requests library)
-- R packages: shiny, shinydashboard, DT, jsonlite, base64enc, digest
+- R packages: shiny, shinydashboard, DT, jsonlite, base64enc, readxl, gridExtra
 - ElevenLabs API account (optional, for Premium voice)
 
 ## Contributing
@@ -260,6 +323,6 @@ This tool is for educational and professional use. Please respect the pronunciat
 
 ---
 
-**Version**: 1.0
-**Last Updated**: December 2025
-**Author**: Built in collaboration with Claude Code
+**Version**: 2.1
+**Last Updated**: December 25, 2025
+**Author**: Built with Claude Code

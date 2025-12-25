@@ -8,19 +8,30 @@ Complete guide to using the app effectively.
 
 1. [Getting Started](#getting-started)
 2. [First-Time Setup](#first-time-setup)
-3. [Looking Up a Name](#looking-up-a-name)
-4. [Using Audio Pronunciation](#using-audio-pronunciation)
-5. [Saving Names](#saving-names)
-6. [Managing Saved Names](#managing-saved-names)
-7. [Settings & Configuration](#settings--configuration)
-8. [Troubleshooting](#troubleshooting)
-9. [Tips & Best Practices](#tips--best-practices)
+3. [Bulk Upload (NEW in v2.0)](#bulk-upload-new-in-v20)
+4. [Looking Up a Name](#looking-up-a-name)
+5. [Using Audio Pronunciation](#using-audio-pronunciation)
+6. [Saving Names](#saving-names)
+7. [Managing Saved Names](#managing-saved-names)
+8. [Settings & Configuration](#settings--configuration)
+9. [Troubleshooting](#troubleshooting)
+10. [Tips & Best Practices](#tips--best-practices)
 
 ---
 
 ## Getting Started
 
-### Launching the App
+### Online Access (No Installation Required)
+
+**Try the app online at shinyapps.io:**
+- No installation or setup required
+- **Standard Voice works perfectly** (browser TTS)
+- All dictionaries and features fully functional
+- **Note**: ElevenLabs Premium Voice not available on hosted version (Python dependency limitations)
+
+**To use ElevenLabs Premium Voice**, run the app locally (see below).
+
+### Launching the App Locally
 
 1. Open RStudio
 2. Set working directory to the Pronunciation folder
@@ -64,6 +75,146 @@ If you want to use the **ElevenLabs Premium Voice** (highly recommended for accu
 6. You'll see "✓ Success!" if configured correctly
 
 **Note**: Your credentials are saved automatically and will load next time you open the app.
+
+---
+
+## Bulk Upload (NEW in v2.0)
+
+### Overview
+
+The **Bulk Upload** feature allows you to process entire class rosters at once instead of looking up names one by one. Perfect for preparing for a new semester!
+
+### Quick Start: Bulk Upload in 4 Steps
+
+1. Click the **Bulk Upload** tab in the sidebar
+2. Click **"Download Example CSV Template"** to see the format
+3. Upload your class roster (CSV, Excel, or TXT file)
+4. Click **"Process Names"** → Download PDF or CSV
+
+### Supported File Formats
+
+**CSV Files (.csv)**
+- Format: `Name,Origin` (two columns)
+- Example:
+  ```
+  Name,Origin
+  Siobhan,Irish
+  José,Spanish
+  Wei,Chinese
+  ```
+- Origin column is optional - if blank, origin is auto-detected
+
+**Excel Files (.xlsx, .xls)**
+- Same format as CSV: First column = Names, Second column = Origin (optional)
+- Works with standard Excel spreadsheets
+
+**Plain Text Files (.txt)**
+- One name per line
+- Origin is auto-detected for all names
+- Example:
+  ```
+  Siobhan
+  José
+  Wei
+  ```
+
+### Detailed Workflow
+
+#### Step 1: Prepare Your File
+
+**Option A: Use the Template**
+1. Click **"Download Example CSV Template"** link
+2. Open the downloaded `name_list_template.csv`
+3. Replace the example names with your students
+4. Save the file
+
+**Option B: Export from Your LMS**
+1. Export class roster from Canvas/Blackboard/etc.
+2. Make sure it has a Name column (and optionally an Origin column)
+3. Save as CSV
+
+**Option C: Create from Scratch**
+1. Create a new CSV or text file
+2. Add student names (one per line for TXT, or in Name column for CSV)
+3. Optionally add Origin column for better accuracy
+
+#### Step 2: Upload the File
+
+1. Click **"Choose File"** button
+2. Select your CSV, Excel, or TXT file
+3. You'll see "Upload complete" when ready
+4. Click **"Process Names"** (blue button)
+
+#### Step 3: Wait for Processing
+
+- Progress bar shows "Processing names..."
+- Typically takes 2-5 seconds for 30 names
+- When complete, you'll see: "Successfully processed X names!"
+
+#### Step 4: Review Results
+
+The preview table shows:
+- **Name**: Student name as entered
+- **Origin**: Detected or specified origin
+- **Simple_Phonetic**: Easy-to-read pronunciation
+- **IPA**: International Phonetic Alphabet notation
+- **Method**: Shows if from dictionary (✓) or pattern-based (⚠)
+
+#### Step 5: Download or Save
+
+**Download PDF Guide:**
+- Click **"Download PDF Guide"** (green button)
+- PDF includes all names with pronunciations
+- Print it or keep it on your device for quick reference
+
+**Download as CSV:**
+- Click **"Download as CSV"** (green button)
+- Import into Excel, Google Sheets, or your gradebook
+- Includes all pronunciation data
+
+**Add All to Saved Names:**
+- Click **"Add All to Saved Names"** (blue button)
+- All names added to Saved Names tab
+- Duplicates are automatically skipped
+- Individual audio playback available in Saved Names tab
+
+**Clear Results:**
+- Click **"Clear Results"** (orange button) when done
+- Resets the screen for uploading another class
+
+### Bulk Upload Limits
+
+- **Maximum**: 200 names per upload
+- **Recommended**: 20-50 names for best performance
+- **For larger classes**: Split into multiple files
+
+### Tips for Bulk Upload
+
+1. **Include Origin column** when you know it - improves accuracy dramatically
+2. **Download template first** to see the correct format
+3. **Test with 5 names** before uploading your full class roster
+4. **Keep the CSV** - you can re-upload it next semester
+5. **Save to Saved Names** for individual audio playback later
+
+### Common Bulk Upload Scenarios
+
+**Scenario 1: New Semester, Full Class Roster**
+1. Get roster from LMS or registrar
+2. Upload → Process → Download PDF
+3. Print PDF or save to tablet
+4. Add all to Saved Names for audio practice
+
+**Scenario 2: Multiple Classes**
+1. Process Class 1 → Download PDF → Clear Results
+2. Process Class 2 → Download PDF → Clear Results
+3. Repeat for each class
+4. Each PDF labeled with date for organization
+
+**Scenario 3: International Student Welcome Event**
+1. Get attendee list
+2. Include origin column if known
+3. Generate PDF for all staff
+4. Everyone pronounces names correctly at check-in
 
 ---
 
@@ -163,7 +314,32 @@ Save names you'll need to reference later:
 
 1. Click the **Saved Names** tab
 2. View table with all saved names
-3. Each row shows: Name, Syllables, Phonetic, IPA, Origin, Notes, Date
+3. Each row shows: Name, Syllables, Phonetic, Origin, Notes, Date, Keep Star, Audio, Delete
+
+### Marking Names as Permanent (NEW in v2.1)
+
+**The "Keep Permanent" Star Feature:**
+
+Build your own permanent collection of frequently-used names that survive semester transitions!
+
+**How it works:**
+1. Find a saved name in the table
+2. Click the **star icon (☆/★)** in the "Keep" column
+3. **Gray outline star (☆)** = Temporary name (will be cleared with "Clear All")
+4. **Gold solid star (★)** = Permanent name (survives "Clear All")
+5. One-click toggle - click again to unmark
+
+**Notifications:**
+- "Marked [name] as permanent (will survive Clear All)" - when you star a name
+- "Unmarked [name] (will be cleared with Clear All)" - when you unstar a name
+
+**Use cases:**
+- Keep names of students who repeat your class across semesters
+- Build a personal collection of frequently-encountered names in your school
+- Maintain names you've practiced and mastered over time
+- Save names of families with multiple children at your school
+
+**Best practice:** Mark names as permanent that you want to keep long-term. Default for new names is temporary, giving you full control over your permanent collection.
 
 ### Playing Saved Names
 
@@ -175,14 +351,43 @@ Save names you'll need to reference later:
 
 - Use the search box above the table
 - Searches across all columns (name, origin, notes, etc.)
+- Table pagination preserves your current page when toggling stars
 
-### Clearing All Saved Names
+### Deleting Individual Saved Names (NEW in v2.0)
+
+1. Find the name you want to delete in the table
+2. Click the **trash icon (🗑️)** in the Delete column
+3. Confirm in the popup: "Are you sure you want to delete this name?"
+4. Name is removed immediately
+5. Notification shows: "Deleted: [name]"
+
+**Use case:** Student dropped your class, or you saved a name by mistake
+
+**Note:** You can delete permanent names (gold stars) just like temporary names - the trash icon works for both.
+
+### Clearing All Saved Names (Enhanced in v2.1)
+
+**Smart clearing with permanent name protection:**
 
 1. Click **"Clear All Saved Names"** button (orange warning button)
 2. Confirm in the popup dialog
-3. All saved names are permanently deleted
+3. **New behavior**:
+   - If you have permanent names (gold stars): Only temporary names are deleted
+   - If no permanent names: All names are deleted (original behavior)
+4. Notification shows results:
+   - "Cleared X temporary names. Kept Y permanent names." (when permanent names exist)
+   - "All saved names cleared." (when no permanent names exist)
 
-**Warning**: This action cannot be undone!
+**Example:**
+- You have 50 saved names total
+- 5 are marked permanent (gold stars)
+- Click "Clear All Saved Names"
+- Result: 45 temporary names deleted, 5 permanent names remain
+- Notification: "Cleared 45 temporary names. Kept 5 permanent names."
+
+**Use case:** End-of-semester cleanup - clear one-time students, keep names you'll need again
+
+**Warning**: There's no "undo" - make sure names are marked permanent (gold star) before clearing!
 
 ---
 
@@ -380,7 +585,7 @@ A: For names in the dictionary (✓): Very accurate. For pattern-based (⚠): Us
 A: Currently not via the UI, but you can edit the R code to add entries to the Irish dictionary or create new language dictionaries.
 
 **Q: What languages are supported?**
-A: Full dictionary support for Irish. Pattern-based support for 15+ languages. Any language can work with manual override.
+A: Full dictionary support for 18 languages (Irish, Spanish, Nigerian, Indian, Greek, Chinese, Vietnamese, Korean, Arabic, Italian, French, Polish, German, Portuguese, Japanese, Russian, Hebrew, Congolese). Pattern-based fallback for names not in dictionaries. Any language can work with manual override.
 
 ---
 
@@ -409,7 +614,9 @@ If a name exists in multiple cultures:
 
 ### Batch Processing
 
-For processing multiple names:
+**Recommended: Use Bulk Upload tab** (faster and easier)
+
+**Alternative (manual method):**
 1. Look up first name, save it
 2. Look up second name, save it
 3. Continue for all names

@@ -1,0 +1,22 @@
+# Documentation files - not needed for app deployment
+*.md
+COMMIT_MESSAGE.txt
+
+# Git files
+.git/
+.gitignore
+
+# Test data files
+test_names.csv
+test_names.txt
+name_list_template.csv
+
+# Dictionary data files (used for development/reference only)
+# NOTE: cmudict-0.7b.txt IS needed by the app (line 25)
+asian_names_cmu_arpabet.txt
+irish_greek_arpabet.txt
+
+# IDE files
+.Rproj.user/
+*.Rproj
+.DS_Store

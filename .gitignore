@@ -40,6 +40,7 @@ ENV/
 # ====================
 # AUDIO CACHE
 # ====================
+.audio_cache/
 /tmp/name_audio_cache/
 *.mp3
 *.wav

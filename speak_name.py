@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-speak_name.py - Generate pronunciation audio for a name using ElevenLabs TTS with SSML Phonemes
+speak_name.py - Generate pronunciation audio for a name using ElevenLabs TTS
 Called from R Shiny app via system2()
 
 Usage:
-    python3 speak_name.py "Name" "IPA_Phonetic" api_key voice_id [output_path] [speed]
+    python3 speak_name.py "Name" "Phonetic_Text" api_key voice_id [output_path] [speed]
 
+Phonetic_Text: Clean respelling (e.g., "shuh-KEEL") or IPA if properly formatted
 Returns JSON with success status and audio file path
 """
 
@@ -26,15 +27,15 @@ if sys.stderr.encoding != 'utf-8':
 # User should set this via environment variable or update it here
 ELEVENLABS_API_KEY = ""  # Will be passed as argument or set as env var
 ELEVENLABS_VOICE_ID = ""  # Will be passed as argument or set as env var
-ELEVENLABS_MODEL = "eleven_turbo_v2_5"  # Fast, cost-effective, high-quality
+ELEVENLABS_MODEL = "eleven_turbo_v2"  # Turbo v2 with IPA support (NOT v2.5)
 
-def generate_name_audio(name, ipa_phonetic, output_path=None, speed=1.0, api_key=None, voice_id=None):
+def generate_name_audio(name, phonetic_text, output_path=None, speed=1.0, api_key=None, voice_id=None, ipa=None):
     """
-    Generate audio pronunciation for a name using ElevenLabs API with SSML phonemes
+    Generate audio pronunciation for a name using ElevenLabs API
 
     Args:
         name: The name to pronounce
-        ipa_phonetic: IPA phonetic spelling (Unicode)
+        phonetic_text: Phonetic respelling (e.g., "shuh-KEEL") or IPA
         output_path: Optional path for output file (default: temp file)
         speed: Speech speed multiplier (0.5 to 1.5, default: 1.0)
         api_key: ElevenLabs API key
@@ -60,12 +61,27 @@ def generate_name_audio(name, ipa_phonetic, output_path=None, speed=1.0, api_key
     # API endpoint
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
 
-    # Clean IPA phonetic - remove slashes if present
-    ipa_clean = ipa_phonetic.strip().strip('/')
-
-    # Send IPA as plain text - ElevenLabs handles it better than SSML phoneme tags
-    # Just send the IPA directly, like you would paste it on their website
-    text_to_speak = ipa_clean
+    # If IPA/CMU is provided, use SSML phoneme tag for accurate pronunciation
+    # ElevenLabs recommends CMU Arpabet over IPA for better consistency
+    # Otherwise, use clean phonetic respelling
+    if (ipa and ipa.strip() and
+        ipa != "IPA not available" and
+        not ipa.startswith("CMU not available") and
+        ipa.strip() != ""):
+        ipa_clean = ipa.strip().strip('/')
+        # Detect if it's CMU Arpabet (contains numbers 0-2 and uppercase) or IPA
+        if any(char in ipa_clean for char in ['0', '1', '2']) and ipa_clean.replace(' ', '').isupper():
+            # CMU Arpabet format (recommended by ElevenLabs)
+            # Format: <phoneme alphabet='cmu-arpabet' ph='CMU_HERE'>OriginalName</phoneme>
+            text_to_speak = f"<phoneme alphabet='cmu-arpabet' ph='{ipa_clean}'>{name}</phoneme>"
+        else:
+            # IPA format (fallback)
+            # Format: <phoneme alphabet='ipa' ph='IPA_HERE'>OriginalName</phoneme>
+            text_to_speak = f"<phoneme alphabet='ipa' ph='{ipa_clean}'>{name}</phoneme>"
+    else:
+        # Fallback to phonetic respelling (plain text - ElevenLabs will interpret naturally)
+        phonetic_clean = phonetic_text.strip().strip('/')
+        text_to_speak = phonetic_clean
 
     # Prepare payload
     payload = {
@@ -111,11 +127,12 @@ def generate_name_audio(name, ipa_phonetic, output_path=None, speed=1.0, api_key
                 "error": error_msg
             }
 
-        # Create output path if not provided
-        if output_path is None:
-            # Use temp directory with hash of name for caching
-            name_hash = str(hash(name.lower().strip()))
-            output_path = str(Path(tempfile.gettempdir()) / f"name_{name_hash}.mp3")
+        # Validate output path (R always provides this, fallback removed to prevent orphan files)
+        if not output_path or not output_path.strip():
+            return {
+                "success": False,
+                "error": "Output path must be provided by calling application"
+            }
 
         # Save audio file
         with open(output_path, "wb") as f:
@@ -149,20 +166,21 @@ def main():
     if len(sys.argv) < 5:
         result = {
             "success": False,
-            "error": "Usage: python3 speak_name.py \"Name\" \"IPA_Phonetic\" api_key voice_id [output_path] [speed]"
+            "error": "Usage: python3 speak_name.py \"Name\" \"Phonetic_Text\" api_key voice_id [output_path] [speed] [ipa]"
         }
         print(json.dumps(result))
         sys.exit(1)
 
     # Parse arguments
     name = sys.argv[1]
-    ipa_phonetic = sys.argv[2]
+    phonetic_text = sys.argv[2]
     api_key = sys.argv[3]
     voice_id = sys.argv[4]
     output_path = sys.argv[5] if len(sys.argv) > 5 else None
     speed = float(sys.argv[6]) if len(sys.argv) > 6 else 1.0
+    ipa = sys.argv[7] if len(sys.argv) > 7 else None
 
-    # Validate name and IPA
+    # Validate name and phonetic text
     if not name or not name.strip():
         result = {
             "success": False,
@@ -171,16 +189,16 @@ def main():
         print(json.dumps(result))
         sys.exit(1)
 
-    if not ipa_phonetic or not ipa_phonetic.strip():
+    if not phonetic_text or not phonetic_text.strip():
         result = {
             "success": False,
-            "error": "IPA phonetic cannot be empty"
+            "error": "Phonetic text cannot be empty"
         }
         print(json.dumps(result))
         sys.exit(1)
 
     # Generate audio
-    result = generate_name_audio(name, ipa_phonetic, output_path, speed, api_key, voice_id)
+    result = generate_name_audio(name, phonetic_text, output_path, speed, api_key, voice_id, ipa)
 
     # Output JSON result
     print(json.dumps(result))
