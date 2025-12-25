@@ -325,4 +325,4 @@ This tool is for educational and professional use. Please respect the pronunciat
 
 **Version**: 2.1
 **Last Updated**: December 25, 2025
-**Author**: Built with Claude Code
+**Author**: Built in collaboration with Claude Code
